@@ -9,7 +9,7 @@ solutions tested in [SQL Online](https://sqliteonline.com/)
 ## Part1
 
 1. Comparison of Sales Dynamics Between Moscow and Saint Petersburg. Calculate the sales of medicines by pharmacies and months for Moscow, do the same for Saint Petersburg, join the tables, and calculate the monthly percentage difference. Write brief conclusions in comments.
-2. Cold Medications. Select medicines starting with the word "aqua" (using the LIKE operator). Convert data to lowercase, group, and calculate the total sales volume for each medicine, rank by descending sales volume, and calculate each medicine's share of the total sales.
+2. Cold Medications. Select medicines starting with the word "аква" (using the LIKE operator). Convert data to lowercase, group, and calculate the total sales volume for each medicine, rank by descending sales volume, and calculate each medicine's share of the total sales.
 3. Who Are Our Customers. Calculate the age of customers based on birth date using date functions; then use the CASE WHEN operator to determine who our customers are. Describe each group: men under 30, men aged 30 to 45, and so on. Calculate the sales share for each group.
 
 ## Part2
