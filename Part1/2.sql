@@ -11,18 +11,24 @@
     группируем и подсчитываем общий объем продаж для каждого препарата, 
     ранжируем по убыванию объема продаж и подсчитываем долю продаж каждого лекарства в общем объеме.
 */
-with drug_sales as (
+with drug_pharmacy_sales as (
   select 
-      lower(drug) as drug
+      drug
+  	  , pharmacy_name
       , sum(price * count) as sales 
   from pharma_orders
   WHERE LOWER(drug) like 'аква%'
-  group by lower(drug)
-  ORDER BY sum(price * count) desc
+  group by drug, pharmacy_name
+), pharmacy_sales as (
+  select pharmacy_name, SUM(price * count) as total_pharmacy_sales 
+  from pharma_orders 
+  group by pharmacy_name
 )
 select 
-	drug 
+	pharmacy_name
+    , drug 
     , CONCAT(ROUND(100*sales/ sum(sales) OVER (), 1),'%') as sales_share
-    , ROW_NUMBER() OVER (ORDER BY sales DESC) as drug_rating
+    , ROW_NUMBER() OVER (PARTITION BY pharmacy_name ORDER BY sales DESC) as pharmacy_drug_rating
 from
-	drug_sales
+	drug_pharmacy_sales join pharmacy_sales USING(pharmacy_name)
+ORDER BY sales_share DESC
