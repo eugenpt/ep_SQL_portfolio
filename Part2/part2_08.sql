@@ -30,7 +30,7 @@ from (
   (
     select customer_id, count(order_id) as order_cnt
     FROM pharma_orders
-    WHERE pharmacy_name = 'Горздрав'
+    WHERE pharmacy_name = 'Здравсити'
     group by pharmacy_name, customer_id
     ORDER BY count(order_id) desc
     limit 10
